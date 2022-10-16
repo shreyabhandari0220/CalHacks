@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+
 import 'package:carousel_slider/carousel_slider.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
-final themeMode = ValueNotifier(2);
+final themeMode = ValueNotifier(1);
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -16,10 +17,10 @@ class MyApp extends StatelessWidget {
       builder: (context, value, g) {
         return MaterialApp(
           darkTheme: ThemeData.dark(),
-          themeMode: ThemeMode.values.toList()[value as int],
+          themeMode: ThemeMode.values.toList()[value],
           debugShowCheckedModeBanner: false,
           title: _title,
-          home: MyStatefulWidget(),
+          home: const MyStatefulWidget(),
         );
       },
       valueListenable: themeMode,
@@ -35,16 +36,23 @@ class MyStatefulWidget extends StatefulWidget {
 }
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
-  int _selectedIndex = 0;
+  int _selectedIndex = 1; // default page
+  // int _selectedIndex = 0; // default page
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static List<Widget> _widgetOptions = <Widget>[
-    CarouselWithIndicatorDemo(),
-    Text(
-      'Index 1: Business',
-      style: optionStyle,
+  static List<Widget> widgetOptions = <Widget>[
+    Column(
+      children: const <Widget>[
+        Spacer(),
+        OutlinedCardTop(),
+        Spacer(),
+        Spacer(),
+        OutlinedCardBottom(),
+        Spacer(),
+      ],
     ),
-    Text(
+    const CarouselWithIndicatorDemo(),
+    const Text(
       'Index 2: School',
       style: optionStyle,
     ),
@@ -58,35 +66,38 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 
   @override
   Widget build(BuildContext context) {
-    const pages = {0:'Analytics', 1:'Network', 2:'Rewards',}; 
-    
+    const pages = {
+      0: 'Analytics',
+      1: 'Network',
+      2: 'Rewards',
+    };
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('Instafit - ' + pages[_selectedIndex].toString()),
+        title: Text('Instafit - ${pages[_selectedIndex]}'),
         actions: [
           IconButton(
-              icon: Icon(Icons.nightlight_round),
+              icon: const Icon(Icons.nightlight_round),
               onPressed: () {
                 themeMode.value = themeMode.value == 1 ? 2 : 1;
-              }
-          ),
+              }),
         ],
       ),
       body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
+        child: widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: const Icon(Icons.analytics_outlined),
             label: pages[0],
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.business),
+            icon: const Icon(Icons.people_alt_rounded),
             label: pages[1],
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
+            icon: const Icon(Icons.monetization_on_outlined),
             label: pages[2],
           ),
         ],
@@ -98,7 +109,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   }
 }
 
-
 /*
   Carousel Slider
 */
@@ -106,7 +116,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 class DemoItem extends StatelessWidget {
   final String title;
   final String route;
-  DemoItem(this.title, this.route);
+  const DemoItem(this.title, this.route, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -130,48 +140,47 @@ final List<String> imgList = [
 
 final List<Widget> imageSliders = imgList
     .map((item) => Container(
-          child: Container(
-            margin: EdgeInsets.all(5.0),
-            child: ClipRRect(
-                borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                child: Stack(
-                  children: <Widget>[
-                    Image.network(item, fit: BoxFit.cover, width: 1000.0),
-                    Positioned(
-                      bottom: 0.0,
-                      left: 0.0,
-                      right: 0.0,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: [
-                              Color.fromARGB(200, 0, 0, 0),
-                              Color.fromARGB(0, 0, 0, 0)
-                            ],
-                            begin: Alignment.bottomCenter,
-                            end: Alignment.topCenter,
-                          ),
+          margin: const EdgeInsets.all(5.0),
+          child: ClipRRect(
+              borderRadius: const BorderRadius.all(Radius.circular(5.0)),
+              child: Stack(
+                children: <Widget>[
+                  Image.network(item, fit: BoxFit.cover, width: 1000.0),
+                  Positioned(
+                    bottom: 0.0,
+                    left: 0.0,
+                    right: 0.0,
+                    child: Container(
+                      decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [
+                            Color.fromARGB(200, 0, 0, 0),
+                            Color.fromARGB(0, 0, 0, 0)
+                          ],
+                          begin: Alignment.bottomCenter,
+                          end: Alignment.topCenter,
                         ),
-                        padding: EdgeInsets.symmetric(
-                            vertical: 10.0, horizontal: 20.0),
-                        child: Text(
-                          'No. ${imgList.indexOf(item)} image',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.bold,
-                          ),
+                      ),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 10.0, horizontal: 20.0),
+                      child: Text(
+                        'No. ${imgList.indexOf(item)} image',
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
-                  ],
-                )),
-          ),
-        )
-    )
+                  ),
+                ],
+              )),
+        ))
     .toList();
 
 class CarouselWithIndicatorDemo extends StatefulWidget {
+  const CarouselWithIndicatorDemo({super.key});
+
   @override
   State<StatefulWidget> createState() {
     return _CarouselWithIndicatorState();
@@ -179,26 +188,22 @@ class CarouselWithIndicatorDemo extends StatefulWidget {
 }
 
 class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
-  int _current = 0;
   final CarouselController _controller = CarouselController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Carousel with indicator controller demo')),
       body: Column(children: [
         Expanded(
           child: CarouselSlider(
             items: imageSliders,
             carouselController: _controller,
             options: CarouselOptions(
-                autoPlay: true,
+                autoPlay: false,
                 enlargeCenterPage: true,
                 aspectRatio: 2.0,
                 onPageChanged: (index, reason) {
-                  setState(() {
-                    _current = index;
-                  });
+                  setState(() {});
                 }),
           ),
         ),
@@ -210,13 +215,8 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
               child: Container(
                 width: 12.0,
                 height: 12.0,
-                margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: (Theme.of(context).brightness == Brightness.dark
-                            ? Colors.white
-                            : Colors.black)
-                        .withOpacity(_current == entry.key ? 0.9 : 0.4)),
+                margin: const EdgeInsets.symmetric(
+                    vertical: 200.0, horizontal: 4.0),
               ),
             );
           }).toList(),
@@ -225,3 +225,64 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
     );
   }
 }
+
+
+
+/*
+  Outlined Card
+*/
+/// An example of the outlined card type.
+///
+/// To make a [Card] match the outlined type, the default elevation and shape
+/// need to be changed to the values from the spec:
+///
+/// https://m3.material.io/components/cards/specs#0f55bf62-edf2-4619-b00d-b9ed462f2c5a
+class OutlinedCardTop extends StatelessWidget {
+  const OutlinedCardTop({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Card(
+        elevation: 0,
+        shape: RoundedRectangleBorder(
+          side: BorderSide(
+            color: Theme.of(context).colorScheme.outline,
+          ),
+          borderRadius: const BorderRadius.all(Radius.circular(12)),
+        ),
+        child: const SizedBox(
+          width: 300,
+          height: 100,
+          child: Center(child: Text('Outlined Card Top')),
+        ),
+      ),
+    );
+  }
+}
+
+
+class OutlinedCardBottom extends StatelessWidget {
+  const OutlinedCardBottom({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Card(
+        elevation: 0,
+        shape: RoundedRectangleBorder(
+          side: BorderSide(
+            color: Theme.of(context).colorScheme.outline,
+          ),
+          borderRadius: const BorderRadius.all(Radius.circular(12)),
+        ),
+        child: const SizedBox(
+          width: 300,
+          height: 100,
+          child: Center(child: Text('Outlined Card Bot')),
+        ),
+      ),
+    );
+  }
+}
+
