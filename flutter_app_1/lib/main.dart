@@ -3,7 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 
 void main() => runApp(MyApp());
 
-final themeMode = ValueNotifier(2);
+final themeMode = ValueNotifier(1);
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
