@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_app_1/analytics.dart';
 import 'package:flutter_app_1/network.dart';
+import 'package:flutter_app_1/crypto.dart';
 
 void main() => runApp(const MyApp());
 
@@ -53,10 +54,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       ],
     ),
     const CarouselWithIndicatorDemo(),
-    const Text(
-      'Index 2: School',
-      style: optionStyle,
-    ),
+    const Crypto(),
   ];
 
   void _onItemTapped(int index) {
