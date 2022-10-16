@@ -9,7 +9,3 @@ We leveraged machine learning to evaluate correlation of particular LOINC values
 
 # Challenges we ran into
 As the majority of us are beginners, we struggled on implementing an app for mobile devices using Flutter. Additionally, we struggled in getting risk assessment values based on individual’s health data. After much challenge, we learned about the FIHP API, which we utilized to predictively model risk assessment.
-
-To Do:
-Rahul - 
-1. Add infinite vertical scrolling on network page
