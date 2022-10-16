@@ -37,8 +37,8 @@ class MyStatefulWidget extends StatefulWidget {
 }
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
-  int _selectedIndex = 0; // default page
-  // int _selectedIndex = 1; // default page
+  // int _selectedIndex = 0; // default page
+  int _selectedIndex = 1; // default page
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static List<Widget> widgetOptions = <Widget>[
@@ -57,7 +57,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         Spacer(),
         CarouselWithIndicatorDemo(),
         Spacer(),
-        OutlinedCardTop(),
+        // OutlinedCardBottom(),
         Spacer(),
       ],
     ),
