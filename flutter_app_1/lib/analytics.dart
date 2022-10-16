@@ -19,8 +19,7 @@ class OutlinedCardTop extends StatelessWidget {
           // \n == newline
           // \u2022 == bullet
           child: Center(
-              child: Text(
-'Risk:\n\u2022 23% 10Y - Heart Disease\n\u2022 Blood Pressure Percentile: 71% \n\u2022 Blood Glucose Percentile: 43%)),
+              child: Text('Risk:\n\u2022 23% 10Y - Heart Disease\n\u2022 Blood Pressure Percentile: 71% \n\u2022 Blood Glucose Percentile: 43%')),
         ),
       ),
     );
