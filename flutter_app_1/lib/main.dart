@@ -185,7 +185,6 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Carousel with indicator controller demo')),
       body: Column(children: [
         Expanded(
           child: CarouselSlider(
