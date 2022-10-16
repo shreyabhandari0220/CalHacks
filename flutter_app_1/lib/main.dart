@@ -52,7 +52,15 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         Spacer(),
       ],
     ),
-    const CarouselWithIndicatorDemo(),
+    Column(
+      children: const <Widget>[
+        Spacer(),
+        CarouselWithIndicatorDemo(),
+        Spacer(),
+        OutlinedCardTop(),
+        Spacer(),
+      ],
+    ),
     const Text(
       'Index 2: School',
       style: optionStyle,
