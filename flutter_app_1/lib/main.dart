@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       builder: (context, value, g) {
         return MaterialApp(
           darkTheme: ThemeData.dark(),
-          themeMode: ThemeMode.values.toList()[value as int],
+          themeMode: ThemeMode.values.toList()[value],
           debugShowCheckedModeBanner: false,
           title: _title,
           home: const MyStatefulWidget(),
@@ -36,13 +36,20 @@ class MyStatefulWidget extends StatefulWidget {
 }
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
-  int _selectedIndex = 0;
+  int _selectedIndex = 1; // default page
+  // int _selectedIndex = 0; // default page
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static List<Widget> widgetOptions = <Widget>[
-    const Text(
-      'Index 1: Business',
-      style: optionStyle,
+    Column(
+      children: const <Widget>[
+        Spacer(),
+        OutlinedCardTop(),
+        Spacer(),
+        Spacer(),
+        OutlinedCardBottom(),
+        Spacer(),
+      ],
     ),
     const CarouselWithIndicatorDemo(),
     const Text(
@@ -59,8 +66,12 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 
   @override
   Widget build(BuildContext context) {
-    const pages = {0:'Analytics', 1:'Network', 2:'Rewards',}; 
-    
+    const pages = {
+      0: 'Analytics',
+      1: 'Network',
+      2: 'Rewards',
+    };
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Instafit - ${pages[_selectedIndex]}'),
@@ -69,8 +80,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               icon: const Icon(Icons.nightlight_round),
               onPressed: () {
                 themeMode.value = themeMode.value == 1 ? 2 : 1;
-              }
-          ),
+              }),
         ],
       ),
       body: Center(
@@ -98,7 +108,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     );
   }
 }
-
 
 /*
   Carousel Slider
@@ -131,43 +140,42 @@ final List<String> imgList = [
 
 final List<Widget> imageSliders = imgList
     .map((item) => Container(
-      margin: const EdgeInsets.all(5.0),
-      child: ClipRRect(
-          borderRadius: const BorderRadius.all(Radius.circular(5.0)),
-          child: Stack(
-            children: <Widget>[
-              Image.network(item, fit: BoxFit.cover, width: 1000.0),
-              Positioned(
-                bottom: 0.0,
-                left: 0.0,
-                right: 0.0,
-                child: Container(
-                  decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        Color.fromARGB(200, 0, 0, 0),
-                        Color.fromARGB(0, 0, 0, 0)
-                      ],
-                      begin: Alignment.bottomCenter,
-                      end: Alignment.topCenter,
+          margin: const EdgeInsets.all(5.0),
+          child: ClipRRect(
+              borderRadius: const BorderRadius.all(Radius.circular(5.0)),
+              child: Stack(
+                children: <Widget>[
+                  Image.network(item, fit: BoxFit.cover, width: 1000.0),
+                  Positioned(
+                    bottom: 0.0,
+                    left: 0.0,
+                    right: 0.0,
+                    child: Container(
+                      decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [
+                            Color.fromARGB(200, 0, 0, 0),
+                            Color.fromARGB(0, 0, 0, 0)
+                          ],
+                          begin: Alignment.bottomCenter,
+                          end: Alignment.topCenter,
+                        ),
+                      ),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 10.0, horizontal: 20.0),
+                      child: Text(
+                        'No. ${imgList.indexOf(item)} image',
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
                   ),
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 10.0, horizontal: 20.0),
-                  child: Text(
-                    'No. ${imgList.indexOf(item)} image',
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 20.0,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          )),
-    )
-    )
+                ],
+              )),
+        ))
     .toList();
 
 class CarouselWithIndicatorDemo extends StatefulWidget {
@@ -195,8 +203,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
                 enlargeCenterPage: true,
                 aspectRatio: 2.0,
                 onPageChanged: (index, reason) {
-                  setState(() {
-                  });
+                  setState(() {});
                 }),
           ),
         ),
@@ -208,8 +215,8 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
               child: Container(
                 width: 12.0,
                 height: 12.0,
-                margin: const EdgeInsets.
-                  symmetric(vertical: 200.0, horizontal: 4.0),
+                margin: const EdgeInsets.symmetric(
+                    vertical: 200.0, horizontal: 4.0),
               ),
             );
           }).toList(),
@@ -218,3 +225,64 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
     );
   }
 }
+
+
+
+/*
+  Outlined Card
+*/
+/// An example of the outlined card type.
+///
+/// To make a [Card] match the outlined type, the default elevation and shape
+/// need to be changed to the values from the spec:
+///
+/// https://m3.material.io/components/cards/specs#0f55bf62-edf2-4619-b00d-b9ed462f2c5a
+class OutlinedCardTop extends StatelessWidget {
+  const OutlinedCardTop({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Card(
+        elevation: 0,
+        shape: RoundedRectangleBorder(
+          side: BorderSide(
+            color: Theme.of(context).colorScheme.outline,
+          ),
+          borderRadius: const BorderRadius.all(Radius.circular(12)),
+        ),
+        child: const SizedBox(
+          width: 300,
+          height: 100,
+          child: Center(child: Text('Outlined Card Top')),
+        ),
+      ),
+    );
+  }
+}
+
+
+class OutlinedCardBottom extends StatelessWidget {
+  const OutlinedCardBottom({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Card(
+        elevation: 0,
+        shape: RoundedRectangleBorder(
+          side: BorderSide(
+            color: Theme.of(context).colorScheme.outline,
+          ),
+          borderRadius: const BorderRadius.all(Radius.circular(12)),
+        ),
+        child: const SizedBox(
+          width: 300,
+          height: 100,
+          child: Center(child: Text('Outlined Card Bot')),
+        ),
+      ),
+    );
+  }
+}
+
