@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_app_1/analytics.dart';
 import 'package:flutter_app_1/network.dart';
 
 void main() => runApp(const MyApp());
@@ -105,120 +106,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         selectedItemColor: Colors.amber[800],
         onTap: _onItemTapped,
       ),
-    );
-  }
-}
-
-/*
-  Outlined Card
-*/
-/// An example of the outlined card type.
-///
-/// To make a [Card] match the outlined type, the default elevation and shape
-/// need to be changed to the values from the spec:
-///
-/// https://m3.material.io/components/cards/specs#0f55bf62-edf2-4619-b00d-b9ed462f2c5a
-class OutlinedCardTop extends StatelessWidget {
-  const OutlinedCardTop({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Card(
-        elevation: 0,
-        shape: RoundedRectangleBorder(
-          side: BorderSide(
-            color: Theme.of(context).colorScheme.outline,
-          ),
-          borderRadius: const BorderRadius.all(Radius.circular(12)),
-        ),
-        child: const SizedBox(
-          width: 300,
-          height: 100,
-          // \n == newline
-          // \u2022 == bullet
-          child: Center(
-              child: Text(
-'Risk:\n\u2022 60% Heart Disease\n\u2022 40% Blood Pressure\n\u2022 20% Blood Glucose')),
-        ),
-      ),
-    );
-  }
-}
-
-class OutlinedCardBottom extends StatelessWidget {
-  const OutlinedCardBottom({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Card(
-          elevation: 0,
-          shape: RoundedRectangleBorder(
-            side: BorderSide(
-              color: Theme.of(context).colorScheme.outline,
-            ),
-            borderRadius: const BorderRadius.all(Radius.circular(12)),
-          ),
-          child: Column(children: <Widget>[
-            Row(
-              // ignore: prefer_const_literals_to_create_immutables
-              children: [
-                const Spacer(),
-                const SizedBox(
-                  width: 100,
-                  height: 100,
-                  child: Center(child: Text('Blood Pressure')),
-                ),
-                const Spacer(),
-                const Spacer(),
-                const SizedBox(
-                  width: 100,
-                  height: 100,
-                  child: Image(image: AssetImage('images/status/9.jpg')),
-                ),
-                const Spacer(),
-              ],
-            ),
-            Row(
-              // ignore: prefer_const_literals_to_create_immutables
-              children: [
-                const Spacer(),
-                const SizedBox(
-                  width: 100,
-                  height: 100,
-                  child: Center(child: Text('LDL')),
-                ),
-                const Spacer(),
-                const Spacer(),
-                const SizedBox(
-                  width: 100,
-                  height: 100,
-                  child: Image(image: AssetImage('images/status/7.jpg')),
-                ),
-                const Spacer(),
-              ],
-            ),
-            Row(
-              // ignore: prefer_const_literals_to_create_immutables
-              children: [
-                const Spacer(),
-                const SizedBox(
-                  width: 100,
-                  height: 100,
-                  child: Center(child: Text('HDL')),
-                ),
-                const Spacer(),
-                const Spacer(),
-                const SizedBox(
-                  width: 100,
-                  height: 100,
-                  child: Image(image: AssetImage('images/status/12.jpg')),
-                ),
-                const Spacer(),
-              ],
-            ),
-          ])),
     );
   }
 }
