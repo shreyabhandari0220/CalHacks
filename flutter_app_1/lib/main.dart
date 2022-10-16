@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+
 import 'package:carousel_slider/carousel_slider.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 final themeMode = ValueNotifier(1);
 
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
           themeMode: ThemeMode.values.toList()[value as int],
           debugShowCheckedModeBanner: false,
           title: _title,
-          home: MyStatefulWidget(),
+          home: const MyStatefulWidget(),
         );
       },
       valueListenable: themeMode,
@@ -38,13 +39,13 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static List<Widget> _widgetOptions = <Widget>[
-    CarouselWithIndicatorDemo(),
-    Text(
+  static List<Widget> widgetOptions = <Widget>[
+    const Text(
       'Index 1: Business',
       style: optionStyle,
     ),
-    Text(
+    const CarouselWithIndicatorDemo(),
+    const Text(
       'Index 2: School',
       style: optionStyle,
     ),
@@ -65,7 +66,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         title: Text('Instafit - ' + pages[_selectedIndex].toString()),
         actions: [
           IconButton(
-              icon: Icon(Icons.nightlight_round),
+              icon: const Icon(Icons.nightlight_round),
               onPressed: () {
                 themeMode.value = themeMode.value == 1 ? 2 : 1;
               }
@@ -73,20 +74,20 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         ],
       ),
       body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
+        child: widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: const Icon(Icons.analytics_outlined),
             label: pages[0],
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.business),
+            icon: const Icon(Icons.people_alt_rounded),
             label: pages[1],
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
+            icon: const Icon(Icons.monetization_on_outlined),
             label: pages[2],
           ),
         ],
@@ -106,7 +107,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 class DemoItem extends StatelessWidget {
   final String title;
   final String route;
-  DemoItem(this.title, this.route);
+  const DemoItem(this.title, this.route, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -131,9 +132,9 @@ final List<String> imgList = [
 final List<Widget> imageSliders = imgList
     .map((item) => Container(
           child: Container(
-            margin: EdgeInsets.all(5.0),
+            margin: const EdgeInsets.all(5.0),
             child: ClipRRect(
-                borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                borderRadius: const BorderRadius.all(Radius.circular(5.0)),
                 child: Stack(
                   children: <Widget>[
                     Image.network(item, fit: BoxFit.cover, width: 1000.0),
@@ -142,7 +143,7 @@ final List<Widget> imageSliders = imgList
                       left: 0.0,
                       right: 0.0,
                       child: Container(
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           gradient: LinearGradient(
                             colors: [
                               Color.fromARGB(200, 0, 0, 0),
@@ -152,11 +153,11 @@ final List<Widget> imageSliders = imgList
                             end: Alignment.topCenter,
                           ),
                         ),
-                        padding: EdgeInsets.symmetric(
+                        padding: const EdgeInsets.symmetric(
                             vertical: 10.0, horizontal: 20.0),
                         child: Text(
                           'No. ${imgList.indexOf(item)} image',
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.white,
                             fontSize: 20.0,
                             fontWeight: FontWeight.bold,
@@ -172,6 +173,8 @@ final List<Widget> imageSliders = imgList
     .toList();
 
 class CarouselWithIndicatorDemo extends StatefulWidget {
+  const CarouselWithIndicatorDemo({super.key});
+
   @override
   State<StatefulWidget> createState() {
     return _CarouselWithIndicatorState();
@@ -179,7 +182,6 @@ class CarouselWithIndicatorDemo extends StatefulWidget {
 }
 
 class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
-  int _current = 0;
   final CarouselController _controller = CarouselController();
 
   @override
@@ -191,12 +193,11 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
             items: imageSliders,
             carouselController: _controller,
             options: CarouselOptions(
-                autoPlay: true,
+                autoPlay: false,
                 enlargeCenterPage: true,
                 aspectRatio: 2.0,
                 onPageChanged: (index, reason) {
                   setState(() {
-                    _current = index;
                   });
                 }),
           ),
@@ -209,13 +210,8 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
               child: Container(
                 width: 12.0,
                 height: 12.0,
-                margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: (Theme.of(context).brightness == Brightness.dark
-                            ? Colors.white
-                            : Colors.black)
-                        .withOpacity(_current == entry.key ? 0.9 : 0.4)),
+                margin: const EdgeInsets.
+                  symmetric(vertical: 200.0, horizontal: 4.0),
               ),
             );
           }).toList(),
