@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 class OutlinedCardTop extends StatelessWidget {
   const OutlinedCardTop({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -21,7 +20,7 @@ class OutlinedCardTop extends StatelessWidget {
           // \u2022 == bullet
           child: Center(
               child: Text(
-'Risk:\n\u2022 60% Heart Disease\n\u2022 40% Blood Pressure\n\u2022 20% Blood Glucose')),
+'Risk:\n\u2022 23% 10Y - Heart Disease\n\u2022 Blood Pressure Percentile: 71% \n\u2022 Blood Glucose Percentile: 43%)),
         ),
       ),
     );
