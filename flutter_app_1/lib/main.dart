@@ -36,8 +36,8 @@ class MyStatefulWidget extends StatefulWidget {
 }
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
-  int _selectedIndex = 1; // default page
-  // int _selectedIndex = 0; // default page
+  int _selectedIndex = 0; // default page
+  // int _selectedIndex = 1; // default page
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static List<Widget> widgetOptions = <Widget>[
@@ -109,8 +109,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   }
 }
 
-
-
 /*
   Outlined Card
 */
@@ -137,13 +135,16 @@ class OutlinedCardTop extends StatelessWidget {
         child: const SizedBox(
           width: 300,
           height: 100,
-          child: Center(child: Text('Outlined Card Top')),
+          // \n == newline
+          // \u2022 == bullet
+          child: Center(
+              child: Text(
+'Risk:\n\u2022 60% Heart Disease\n\u2022 40% Blood Pressure\n\u2022 20% Blood Glucose')),
         ),
       ),
     );
   }
 }
-
 
 class OutlinedCardBottom extends StatelessWidget {
   const OutlinedCardBottom({super.key});
@@ -152,20 +153,72 @@ class OutlinedCardBottom extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Card(
-        elevation: 0,
-        shape: RoundedRectangleBorder(
-          side: BorderSide(
-            color: Theme.of(context).colorScheme.outline,
+          elevation: 0,
+          shape: RoundedRectangleBorder(
+            side: BorderSide(
+              color: Theme.of(context).colorScheme.outline,
+            ),
+            borderRadius: const BorderRadius.all(Radius.circular(12)),
           ),
-          borderRadius: const BorderRadius.all(Radius.circular(12)),
-        ),
-        child: const SizedBox(
-          width: 300,
-          height: 100,
-          child: Center(child: Text('Outlined Card Bot')),
-        ),
-      ),
+          child: Column(children: <Widget>[
+            Row(
+              // ignore: prefer_const_literals_to_create_immutables
+              children: [
+                const Spacer(),
+                const SizedBox(
+                  width: 100,
+                  height: 100,
+                  child: Center(child: Text('Blood Pressure')),
+                ),
+                const Spacer(),
+                const Spacer(),
+                const SizedBox(
+                  width: 100,
+                  height: 100,
+                  child: Image(image: AssetImage('images/status/9.jpg')),
+                ),
+                const Spacer(),
+              ],
+            ),
+            Row(
+              // ignore: prefer_const_literals_to_create_immutables
+              children: [
+                const Spacer(),
+                const SizedBox(
+                  width: 100,
+                  height: 100,
+                  child: Center(child: Text('LDL')),
+                ),
+                const Spacer(),
+                const Spacer(),
+                const SizedBox(
+                  width: 100,
+                  height: 100,
+                  child: Image(image: AssetImage('images/status/7.jpg')),
+                ),
+                const Spacer(),
+              ],
+            ),
+            Row(
+              // ignore: prefer_const_literals_to_create_immutables
+              children: [
+                const Spacer(),
+                const SizedBox(
+                  width: 100,
+                  height: 100,
+                  child: Center(child: Text('HDL')),
+                ),
+                const Spacer(),
+                const Spacer(),
+                const SizedBox(
+                  width: 100,
+                  height: 100,
+                  child: Image(image: AssetImage('images/status/12.jpg')),
+                ),
+                const Spacer(),
+              ],
+            ),
+          ])),
     );
   }
 }
-
