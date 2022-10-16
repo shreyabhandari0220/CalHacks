@@ -21,9 +21,21 @@ class DemoItem extends StatelessWidget {
 }
 
 final List<String> imgList = [
-  "assets/images/yoga.jpg",
-  "assets/images/yoga.jpg",
-  "assets/images/yoga.jpg",
+  "images/healthy_food.jpg",
+  "images/meditation.jpeg",
+  "images/running.jpg",
+  "images/swimming.jpg",
+  "images/talking_to_friends.jpg",
+  "images/yoga.jpg",
+];
+
+final List<String> descriptions = [
+  "Eat healthy food",
+  "Meditate",
+  "Go for a run",
+  "Go for a swim",
+  "Talk to friends",
+  "Do yoga",
 ];
 
 final List<Widget> imageSliders = imgList
@@ -52,7 +64,7 @@ final List<Widget> imageSliders = imgList
                       padding: const EdgeInsets.symmetric(
                           vertical: 10.0, horizontal: 20.0),
                       child: Text(
-                        'No. ${imgList.indexOf(item)} image',
+                        descriptions[imgList.indexOf(item)].toString(),
                         style: const TextStyle(
                           color: Colors.white,
                           fontSize: 20.0,

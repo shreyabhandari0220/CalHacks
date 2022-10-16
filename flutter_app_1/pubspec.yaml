@@ -64,35 +64,32 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - images/a_dot_burr.jpeg
-    - images/a_dot_ham.jpeg
-    - healthy-food.jpg
-    - meditation.jpeg
-    - running.jpg
-    - swimming.jpg
-    - talking to friends.jpg
-    - yoga.jpg
-    - IMG-2390.jpg
-    - IMG-2391.jpg
-    - IMG-2392.jpg
-    - IMG-2393.jpg
-    - IMG-2394.jpg
-    - IMG-2395.jpg
-    - IMG-2396.jpg
-    - IMG-2397.jpg
-    - IMG-2398.jpg
-    - IMG-2399.jpg
-    - IMG-2400.jpg
-    - IMG-2401.jpg
-    - IMG-2402.jpg
-    - IMG-2403.jpg
-    - IMG-2404.jpg
-    - IMG-2405.jpg
-    - IMG-2406.jpg
-    - IMG-2407.jpg
-    - IMG-2408.jpg
-    - IMG-2409.jpg
-    
+    - images/healthy_food.jpg
+    - images/meditation.jpeg
+    - images/running.jpg
+    - images/swimming.jpg
+    - images/talking_to_friends.jpg
+    - images/yoga.jpg
+    - images/status/0.jpg
+    - images/status/1.jpg
+    - images/status/2.jpg
+    - images/status/3.jpg
+    - images/status/4.jpg
+    - images/status/5.jpg
+    - images/status/6.jpg
+    - images/status/7.jpg
+    - images/status/8.jpg
+    - images/status/9.jpg
+    - images/status/10.jpg
+    - images/status/11.jpg
+    - images/status/12.jpg
+    - images/status/13.jpg
+    - images/status/14.jpg
+    - images/status/15.jpg
+    - images/status/16.jpg
+    - images/status/17.jpg
+    - images/status/18.jpg
+    - images/status/19.jpg
 
 
 
