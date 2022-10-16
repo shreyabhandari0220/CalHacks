@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter_app_1/main.dart';
 
 /*
   Carousel Slider
@@ -79,7 +80,9 @@ final List<Widget> imageSliders = imgList
     .toList();
 
 class CarouselWithIndicatorDemo extends StatefulWidget {
-  const CarouselWithIndicatorDemo({super.key});
+  var themeMode;
+
+  CarouselWithIndicatorDemo({super.key, this.themeMode});
 
   @override
   State<StatefulWidget> createState() {
@@ -94,23 +97,25 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
   Widget build(BuildContext context) {
     //dictionary map of acronym to full name
     const networkUpdates = [
+      "Nancy had 3 healthy meals today",
+      "Ivy beat their goal of 100 steps",
       "Yi beat Barbara Garcia last week",
-      "Jonny beat his goal of 100 steps",
     ];
+
     // horizontal line
     var horizontalLine = Container(
-      margin: const EdgeInsets.only(top: 10.0, bottom: 10.0),
+      margin: const EdgeInsets.only(top: 10.0, bottom: 10.0, left: 10.0, right: 10.0),
       height: 2.0,
       width: 500.0,
-      color: Colors.black,
+      color: themeMode.value == 0 ? Colors.white : Colors.black,
     );
 
     Container getUpdate(int i) => Container(
       margin: const EdgeInsets.only(top: 10.0, bottom: 10.0),
       child: Text(
         networkUpdates[i],
-        style: const TextStyle(
-          color: Colors.black,
+        style: TextStyle(
+          color: themeMode.value == 0 ? Colors.white : Colors.black,
           fontSize: 20.0,
           fontWeight: FontWeight.bold,
         ),
@@ -150,6 +155,8 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
         getUpdate(0),
         horizontalLine,
         getUpdate(1),
+        horizontalLine,
+        getUpdate(2),
         horizontalLine,
         const SizedBox(
           height: 20,

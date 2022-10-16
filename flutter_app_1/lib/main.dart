@@ -53,7 +53,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         Spacer(),
       ],
     ),
-    const CarouselWithIndicatorDemo(),
+    CarouselWithIndicatorDemo(themeMode: themeMode),
     const Crypto(),
   ];
 
