@@ -92,6 +92,31 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
 
   @override
   Widget build(BuildContext context) {
+    //dictionary map of acronym to full name
+    const networkUpdates = [
+      "Yi beat Barbara Garcia last week",
+      "Jonny beat his goal of 100 steps",
+    ];
+    // horizontal line
+    var horizontalLine = Container(
+      margin: const EdgeInsets.only(top: 10.0, bottom: 10.0),
+      height: 2.0,
+      width: 500.0,
+      color: Colors.black,
+    );
+
+    Container getUpdate(int i) => Container(
+      margin: const EdgeInsets.only(top: 10.0, bottom: 10.0),
+      child: Text(
+        networkUpdates[i],
+        style: const TextStyle(
+          color: Colors.black,
+          fontSize: 20.0,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    );
+
     return Scaffold(
       body: Column(children: [
         Expanded(
@@ -116,10 +141,19 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
                 width: 12.0,
                 height: 12.0,
                 margin: const EdgeInsets.symmetric(
-                    vertical: 200.0, horizontal: 4.0),
+                    vertical: 100.0, horizontal: 4.0),
               ),
             );
           }).toList(),
+        ),
+        horizontalLine,
+        getUpdate(0),
+        horizontalLine,
+        getUpdate(1),
+        horizontalLine,
+        const SizedBox(
+          height: 20,
+          child: Text("Scroll down to see more updates"),
         ),
       ]),
     );
