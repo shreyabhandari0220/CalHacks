@@ -13,6 +13,8 @@ As the majority of us are beginners, we struggled on implementing an app for mob
 
 We are proud of getting a mobile app implemented that represents the fusion of machine learning and cryptocurrency and helps society by being on the health track. We are proud that our app is able to ease individual’s stress through directly with helping in the diagnosis aspect of healthcare, the basis of the healthcare field. We are also glad that we were able to utilize the FIHR API to predictively model risk assessment, as we initially struggled on finding a way to get risk assessment values based on individual’s health data.
 
+As the majority of us are beginners, we initially struggled on implementing an app for mobile devices using Flutter. However, in the end, we learned how to build a mobile app through leveraging the Flutter technology. We were also very new to the idea of making an app that utilizes cryptocurrency. However, in the end, we made a successfully functional app that utilizes cryptocurrency as incentives to exercise. Therefore, we learned how to leverage the benefits of cryptocurrency and combine them with building an app to create a better product.
+
 To Do:
 Rahul - 
 1. Add infinite vertical scrolling on network page
