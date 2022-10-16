@@ -10,5 +10,7 @@
 How we built it
 Challenges we ran into
 
+<Name of App> provides users (the general population) with a real time evaluation of health risks associated with their current health patterns.
+
 
 
