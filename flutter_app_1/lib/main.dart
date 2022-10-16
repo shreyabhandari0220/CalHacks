@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 void main() => runApp(const MyApp());
+
+final themeMode = ValueNotifier(2);
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -9,9 +12,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: _title,
-      home: MyStatefulWidget(),
+    return ValueListenableBuilder(
+      builder: (context, value, g) {
+        return MaterialApp(
+          darkTheme: ThemeData.dark(),
+          themeMode: ThemeMode.values.toList()[value as int],
+          debugShowCheckedModeBanner: false,
+          title: _title,
+          home: MyStatefulWidget(),
+        );
+      },
+      valueListenable: themeMode,
     );
   }
 }
@@ -55,6 +66,14 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Instafit - ' + pages[_selectedIndex].toString()),
+        actions: [
+          IconButton(
+              icon: Icon(Icons.nightlight_round),
+              onPressed: () {
+                themeMode.value = themeMode.value == 1 ? 2 : 1;
+              }
+          ),
+        ],
       ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
